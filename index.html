@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KnapS Group — Global Supply Chain Solutions</title>
+<meta name="description" content="KnapS Group builds resilient global supply chains for international brands in home goods, appliances, electronics, and consumer products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* === RESET & BASE === */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--blue:#4F9EF6;--blue-light:#E7F1FE;--bg-gray:#F1F1F3;
+--dark:#31313B;--white:#FFFFFF;--radius:10px;
+--font:'Montserrat',sans-serif;
+--nav-h:72px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{font-family:var(--font);color:var(--dark);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+/* === UTILITIES === */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0}
+.section-label{font-size:clamp(32px,4.5vw,52px);margin-bottom:48px;line-height:1.15}
+.section-label span.light{font-weight:300;color:var(--dark)}
+.section-label span.bold{font-weight:800;color:var(--blue)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius);font-family:var(--font);font-weight:600;font-size:15px;border:none;cursor:pointer;transition:all .3s ease}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#3b8be0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,158,246,.35)}
+.btn-outline{background:transparent;color:var(--blue);border:2px solid var(--blue)}
+.btn-outline:hover{background:var(--blue);color:#fff}
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* === NAVIGATION === */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+.nav-logo svg{display:block}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links li a{font-size:14px;font-weight:500;letter-spacing:.3px;transition:color .2s}
+.nav-links li a:hover{color:var(--blue)}
+.nav-links .nav-cta a{padding:10px 24px;font-size:13px}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s}
+
+/* === HERO === */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--blue-light);overflow:hidden;padding-top:var(--nav-h)}
+.hero-bg-art{position:absolute;inset:0;pointer-events:none}
+.globe-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1.5px solid rgba(79,158,246,.15);transform:translate(-50%,-50%)}
+.ring-1{width:300px;height:300px;animation:ring-spin 30s linear infinite}
+.ring-2{width:500px;height:500px;animation:ring-spin 45s linear infinite reverse}
+.ring-3{width:720px;height:720px;animation:ring-spin 60s linear infinite}
+@keyframes ring-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.globe-dot{position:absolute;top:var(--y);left:var(--x);width:6px;height:6px;background:var(--blue);border-radius:50%;opacity:.35;animation:dot-pulse 3s ease-in-out infinite alternate}
+.globe-dot:nth-child(odd){animation-delay:1s}
+@keyframes dot-pulse{0%{transform:scale(1);opacity:.2}100%{transform:scale(1.8);opacity:.5}}
+.hero-content{position:relative;text-align:center;max-width:900px}
+.hero-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:24px;opacity:0;animation:fade-up .8s .2s forwards}
+.hero-title{font-size:clamp(36px,7vw,96px);font-weight:900;letter-spacing:clamp(2px,1vw,12px);line-height:1.05;color:var(--dark);margin-bottom:24px;opacity:0;animation:fade-up .8s .4s forwards}
+.hero-title .accent{color:var(--blue)}
+.hero-sub{font-size:clamp(16px,2vw,21px);font-weight:400;color:#555;max-width:640px;margin:0 auto 12px;opacity:0;animation:fade-up .8s .6s forwards}
+.hero-tagline{font-size:15px;font-weight:600;color:var(--blue);margin-bottom:40px;opacity:0;animation:fade-up .8s .75s forwards}
+.hero .btn{opacity:0;animation:fade-up .8s .9s forwards}
+@keyframes fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* === ABOUT === */
+.about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center}
+.about-img-block{border-radius:16px;overflow:hidden}
+.about-illustration{width:100%;height:auto}
+.about-text p{margin-bottom:18px;font-size:16px;color:#555;line-height:1.75}
+.about-text p:last-child{margin-bottom:0}
+.about-text strong{color:var(--blue);font-weight:700}
+
+/* === SERVICES === */
+.services{background:var(--bg-gray)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.service-card{background:var(--white);border-radius:14px;padding:40px 32px;transition:transform .35s ease,box-shadow .35s ease}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(79,158,246,.12)}
+.service-icon{width:48px;height:48px;margin-bottom:20px}
+.service-card h3{font-size:17px;font-weight:700;margin-bottom:12px;color:var(--dark)}
+.service-card p{font-size:14.5px;color:#666;line-height:1.7}
+
+/* === TREND === */
+.trend{background:var(--white)}
+.trend-subtitle{font-size:18px;font-weight:600;color:var(--blue);margin-top:-36px;margin-bottom:10px}
+.trend-desc{font-size:15px;color:#666;max-width:600px;margin-bottom:48px}
+.trend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.trend-card{background:var(--white);border-radius:14px;overflow:hidden;border:1px solid #e8e8ea;transition:transform .35s ease,box-shadow .35s ease}
+.trend-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(79,158,246,.12)}
+.trend-card-img{height:260px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.trend-card-img img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .4s ease}
+.trend-card:hover .trend-card-img img{transform:scale(1.05)}
+.trend-card-img svg{width:56px;height:56px;opacity:.7}
+.trend-tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.88);backdrop-filter:blur(6px);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--blue)}
+.trend-card-body{padding:24px}
+.trend-card-body h3{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--dark)}
+.trend-card-body p{font-size:13.5px;color:#888;line-height:1.6;margin-bottom:14px}
+.trend-card-body a{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap .2s}
+.trend-card-body a:hover{gap:8px}
+
+/* === FEATURED PRODUCT === */
+.featured-product{margin-bottom:72px;background:var(--dark);border-radius:20px;overflow:hidden;position:relative}
+.featured-badge{position:absolute;top:24px;left:24px;z-index:2;background:var(--blue);color:#fff;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.featured-top{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
+.featured-hero-img{position:relative;display:flex;align-items:center;justify-content:center;padding:40px;background:linear-gradient(135deg,#1a1a22,#2a2a35)}
+.featured-hero-img img{max-height:400px;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(0,0,0,.4))}
+.featured-hero-info{display:flex;flex-direction:column;justify-content:center;padding:56px 48px;color:#fff}
+.featured-hero-info .feat-tag{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.featured-hero-info h3{font-size:clamp(28px,3vw,38px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.featured-hero-info h3 span{color:var(--blue)}
+.featured-hero-info .feat-desc{font-size:15px;line-height:1.75;color:rgba(255,255,255,.7);margin-bottom:28px}
+.featured-hero-info .feat-highlights{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.feat-chip{padding:6px 16px;background:rgba(79,158,246,.12);border:1px solid rgba(79,158,246,.25);border-radius:20px;font-size:12px;font-weight:600;color:var(--blue)}
+.featured-hero-info .btn{align-self:flex-start}
+.featured-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.08)}
+.featured-gallery-item{position:relative;overflow:hidden;aspect-ratio:1;cursor:pointer}
+.featured-gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.featured-gallery-item:hover img{transform:scale(1.08)}
+.featured-gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.3),transparent);pointer-events:none}
+.featured-gallery-item .gallery-label{position:absolute;bottom:12px;left:14px;font-size:11px;font-weight:600;color:rgba(255,255,255,.85);z-index:1;letter-spacing:.5px}
+/* video placeholder */
+.featured-video-slot{position:relative;display:flex;align-items:center;justify-content:center;background:#1a1a22;cursor:pointer;overflow:hidden}
+.featured-video-slot video{position:absolute;inset:0}
+.featured-video-slot .video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.7);font-size:12px;font-weight:500;z-index:2;background:rgba(0,0,0,.35);transition:opacity .4s}
+.featured-video-slot .video-placeholder.hidden{opacity:0;pointer-events:none}
+.featured-video-slot .play-icon{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s,border-color .2s}
+.featured-video-slot:hover .play-icon{transform:scale(1.1);border-color:#fff}
+.featured-video-slot .play-icon svg{width:20px;height:20px;margin-left:3px}
+/* lightbox */
+.lightbox-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox-overlay.active{display:flex}
+.lightbox-overlay img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:24px;right:28px;width:40px;height:40px;border:none;background:rgba(255,255,255,.1);border-radius:50%;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.lightbox-close:hover{background:rgba(255,255,255,.2)}
+
+@media(max-width:1024px){
+.featured-top{grid-template-columns:1fr}
+.featured-hero-img{min-height:340px}
+.featured-gallery{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:768px){
+.featured-gallery{grid-template-columns:repeat(2,1fr)}
+.featured-hero-info{padding:36px 28px}
+}
+
+/* === STATS === */
+.stats{background:var(--blue);padding:72px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-item{color:#fff}
+.stat-num{font-size:clamp(40px,5vw,64px);font-weight:900;display:inline}
+.stat-plus{font-size:clamp(28px,3.5vw,44px);font-weight:700;color:rgba(255,255,255,.7)}
+.stat-item p{font-size:14px;font-weight:400;margin-top:8px;opacity:.85;line-height:1.45}
+
+/* === WHY === */
+.why{background:var(--bg-gray)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.why-card{background:var(--white);border-radius:14px;padding:44px 32px;text-align:center;transition:transform .35s,box-shadow .35s}
+.why-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(79,158,246,.1)}
+.why-icon{display:flex;justify-content:center;margin-bottom:24px}
+.why-icon svg{width:56px;height:56px}
+.why-card h3{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--dark)}
+.why-card p{font-size:14.5px;color:#666;line-height:1.7}
+
+/* === CONTACT === */
+.contact{background:var(--bg-gray)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:28px}
+.contact-row{display:flex;gap:16px;align-items:flex-start}
+.contact-icon{flex-shrink:0;width:44px;height:44px;background:var(--blue-light);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.contact-icon svg{width:20px;height:20px}
+.contact-row h4{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.contact-row a,.contact-row p{font-size:14px;color:#666;line-height:1.6}
+.contact-row a:hover{color:var(--blue)}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.contact-form input,.contact-form textarea{width:100%;padding:14px 18px;border:1.5px solid #ddd;border-radius:var(--radius);font-family:var(--font);font-size:14px;color:var(--dark);background:var(--white);transition:border-color .2s;outline:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--blue)}
+.contact-form textarea{resize:vertical}
+
+/* === FOOTER === */
+.footer{background:var(--dark);color:rgba(255,255,255,.65);padding:56px 0 32px}
+.footer-inner{display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center}
+.footer-tagline{font-size:13px;margin-top:8px;font-weight:400;color:rgba(255,255,255,.45);letter-spacing:.5px}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-size:13px;font-weight:500;transition:color .2s}
+.footer-links a:hover{color:var(--blue)}
+.footer-social{display:flex;gap:16px}
+.footer-social a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(255,255,255,.2);transition:all .2s;color:rgba(255,255,255,.6)}
+.footer-social a svg{width:16px;height:16px}
+.footer-social a:hover{border-color:var(--blue);color:var(--blue)}
+.footer-copy{font-size:12px;opacity:.5;margin-top:8px}
+
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+.services-grid,.trend-grid{grid-template-columns:repeat(2,1fr)}
+.why-grid{grid-template-columns:repeat(2,1fr)}
+.why-card:last-child{grid-column:span 2;max-width:50%;margin:0 auto}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:40px}
+.about-grid{grid-template-columns:1fr;gap:40px}
+.about-visual{order:2}
+}
+@media(max-width:768px){
+.nav-toggle{display:flex}
+.nav-links{position:fixed;top:var(--nav-h);right:0;width:260px;height:calc(100vh - var(--nav-h));background:var(--white);flex-direction:column;align-items:flex-start;padding:32px 28px;gap:20px;transform:translateX(100%);transition:transform .35s ease;box-shadow:-4px 0 24px rgba(0,0,0,.06)}
+.nav-links.open{transform:translateX(0)}
+.nav-links .nav-cta{margin-top:auto}
+.services-grid,.trend-grid,.why-grid{grid-template-columns:1fr}
+.why-card:last-child{grid-column:auto;max-width:100%}
+.contact-grid{grid-template-columns:1fr}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:32px}
+.hero-title{letter-spacing:4px}
+.section{padding:72px 0}
+}
+@media(max-width:480px){
+.stats-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+<div class="container nav-inner">
+<a href="#home" class="nav-logo" aria-label="KnapS Group Home">
+<svg viewBox="0 0 180 40" height="36" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="20" r="5" fill="#4F9EF6"/>
+<circle cx="28" cy="20" r="7.5" fill="#4F9EF6"/>
+<circle cx="50" cy="20" r="11" fill="#4F9EF6"/>
+<text x="68" y="27" font-family="Montserrat,sans-serif" font-weight="800" font-size="22" fill="#31313B">Knap<tspan fill="#4F9EF6">S</tspan></text>
+</svg>
+</a>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#trend">KnapS Trend</a></li>
+<li><a href="#contact">Contact</a></li>
+<li class="nav-cta"><a href="#contact" class="btn btn-primary">Get In Touch</a></li>
+</ul>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="hero-bg-art">
+<div class="globe-ring ring-1"></div>
+<div class="globe-ring ring-2"></div>
+<div class="globe-ring ring-3"></div>
+<div class="globe-dot" style="--x:20%;--y:30%"></div>
+<div class="globe-dot" style="--x:75%;--y:25%"></div>
+<div class="globe-dot" style="--x:60%;--y:70%"></div>
+<div class="globe-dot" style="--x:35%;--y:65%"></div>
+<div class="globe-dot" style="--x:80%;--y:55%"></div>
+<div class="globe-dot" style="--x:15%;--y:55%"></div>
+</div>
+<div class="container hero-content">
+<p class="hero-tag">Global Supply Chain Solutions</p>
+<h1 class="hero-title">WE&nbsp;&nbsp;&nbsp;KNAP<span class="accent">S</span>&nbsp;&nbsp;&nbsp;THE&nbsp;&nbsp;&nbsp;WORLD</h1>
+<p class="hero-sub">Building Resilient Global Supply Chains for International Brands</p>
+<p class="hero-tagline">We KnapS the World, Spark Joy</p>
+<a href="#services" class="btn btn-primary">Explore Our Services <span class="arrow">&rarr;</span></a>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+<div class="container about-grid">
+<div class="about-visual reveal">
+<div class="about-img-block">
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="about-illustration">
+<rect width="400" height="400" rx="20" fill="#E7F1FE"/>
+<circle cx="200" cy="180" r="80" fill="none" stroke="#4F9EF6" stroke-width="2" opacity=".4"/>
+<circle cx="200" cy="180" r="120" fill="none" stroke="#4F9EF6" stroke-width="1.5" opacity=".25"/>
+<circle cx="200" cy="180" r="160" fill="none" stroke="#4F9EF6" stroke-width="1" opacity=".15"/>
+<circle cx="200" cy="180" r="8" fill="#4F9EF6"/>
+<circle cx="280" cy="180" r="5" fill="#4F9EF6" opacity=".7"/>
+<circle cx="200" cy="100" r="5" fill="#4F9EF6" opacity=".7"/>
+<circle cx="140" cy="230" r="5" fill="#4F9EF6" opacity=".7"/>
+<circle cx="310" cy="130" r="4" fill="#4F9EF6" opacity=".5"/>
+<circle cx="100" cy="150" r="4" fill="#4F9EF6" opacity=".5"/>
+<line x1="200" y1="180" x2="280" y2="180" stroke="#4F9EF6" stroke-width="1" opacity=".3"/>
+<line x1="200" y1="180" x2="200" y2="100" stroke="#4F9EF6" stroke-width="1" opacity=".3"/>
+<line x1="200" y1="180" x2="140" y2="230" stroke="#4F9EF6" stroke-width="1" opacity=".3"/>
+<line x1="200" y1="180" x2="310" y2="130" stroke="#4F9EF6" stroke-width="1" opacity=".3"/>
+<line x1="200" y1="180" x2="100" y2="150" stroke="#4F9EF6" stroke-width="1" opacity=".3"/>
+<text x="200" y="340" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="700" font-size="16" fill="#4F9EF6">Global Network</text>
+<text x="200" y="365" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="400" font-size="12" fill="#31313B" opacity=".6">Connecting Brands Worldwide</text>
+</svg>
+</div>
+</div>
+<div class="about-text reveal">
+<h2 class="section-label"><span class="light">about&nbsp;&nbsp;</span><span class="bold">KnapS Group</span></h2>
+<p>KnapS Group is a global supply chain management company that serves as an embedded operational partner for international brands in home goods, home appliances, electronics, and consumer products.</p>
+<p>In today's dispersed manufacturing landscape, the challenge goes far beyond finding a factory. It requires orchestrating a cohesive, transparent, and efficient production network across borders. That is exactly what we do.</p>
+<p>We don't simply connect buyers with suppliers. We embed ourselves into your operations — providing strategic oversight, rigorous quality management, and end-to-end supply chain transparency. Our team acts as your dedicated operations arm on the ground, delivering the objectivity and risk mitigation you need to scale globally with confidence.</p>
+<p>Our founding belief is that distance should never compromise quality or reliability. This is the promise behind our mission: <strong>KnapS the World, Spark Joy</strong> — turning the complexity of global trade into your competitive advantage.</p>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+<div class="container">
+<h2 class="section-label reveal"><span class="light">our&nbsp;&nbsp;</span><span class="bold">Services</span></h2>
+<div class="services-grid">
+<!-- card 1 -->
+<div class="service-card reveal">
+<div class="service-icon">
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="#4F9EF6" stroke-width="2"/><path d="M14 24h20M24 14v20" stroke="#4F9EF6" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="6" fill="#E7F1FE" stroke="#4F9EF6" stroke-width="2"/></svg>
+</div>
+<h3>End-to-End Supply Chain Management</h3>
+<p>Your single point of contact. We serve as your embedded command center, managing everything from sourcing to final shipment — providing full transparency at every stage.</p>
+</div>
+<!-- card 2 -->
+<div class="service-card reveal">
+<div class="service-icon">
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="#4F9EF6" stroke-width="2"/><circle cx="24" cy="24" r="10" fill="none" stroke="#4F9EF6" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="14" r="3" fill="#4F9EF6"/><circle cx="32" cy="30" r="3" fill="#4F9EF6"/><circle cx="16" cy="30" r="3" fill="#4F9EF6"/></svg>
+</div>
+<h3>Global Supplier Matching</h3>
+<p>We are not tied to any single region. Our global network and deep market expertise allow us to identify and vet the right manufacturing partners for your specific product, cost, and quality requirements.</p>
+</div>
+<!-- card 3 -->
+<div class="service-card reveal">
+<div class="service-icon">
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="#4F9EF6" stroke-width="2"/><path d="M16 24l5 5 11-11" stroke="#4F9EF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<h3>Quality Assurance &amp; Risk Management</h3>
+<p>We protect your brand with a rigorous system of factory audits, proactive quality control, and compliance verification — ensuring consistent standards across all production partners.</p>
+</div>
+<!-- card 4 -->
+<div class="service-card reveal">
+<div class="service-icon">
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="#4F9EF6" stroke-width="2"/><path d="M18 30l4-8 4 5 6-13" stroke="#4F9EF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<h3>Value Engineering</h3>
+<p>We optimize your product design and supply chain flow to reduce your total cost of ownership, directly improving your margins without compromising quality.</p>
+</div>
+<!-- card 5 -->
+<div class="service-card reveal">
+<div class="service-icon">
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="#4F9EF6" stroke-width="2"/><rect x="14" y="20" width="20" height="12" rx="2" stroke="#4F9EF6" stroke-width="2"/><path d="M18 20v-4a6 6 0 0112 0v4" stroke="#4F9EF6" stroke-width="2" stroke-linecap="round"/></svg>
+</div>
+<h3>Logistics &amp; Fulfillment</h3>
+<p>From factory floor to your warehouse door. We coordinate international freight, customs clearance, and last-mile logistics to ensure on-time delivery worldwide.</p>
+</div>
+<!-- card 6 -->
+<div class="service-card reveal">
+<div class="service-icon">
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="#4F9EF6" stroke-width="2"/><circle cx="24" cy="20" r="6" stroke="#4F9EF6" stroke-width="2"/><path d="M15 36c0-5 4-9 9-9s9 4 9 9" stroke="#4F9EF6" stroke-width="2" stroke-linecap="round"/></svg>
+</div>
+<h3>Market Intelligence</h3>
+<p>Leverage our on-the-ground insights into manufacturing trends, material costs, and regulatory changes to make informed sourcing decisions ahead of the competition.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- KNAPS TREND -->
+<section class="section trend" id="trend">
+<div class="container">
+<h2 class="section-label reveal"><span class="bold">KnapS</span><span class="light">&nbsp;&nbsp;Trend</span></h2>
+<p class="trend-subtitle reveal">Trending Products We Love</p>
+<p class="trend-desc reveal">Curated selection of innovative and popular products across our categories. Discover what's trending in global consumer markets.</p>
+
+<!-- FEATURED PRODUCT SHOWCASE -->
+<div class="featured-product reveal">
+<span class="featured-badge">Featured</span>
+<div class="featured-top">
+<div class="featured-hero-img">
+<img src="products/blender-main.jpg" alt="Portable Blending Cup">
+</div>
+<div class="featured-hero-info">
+<span class="feat-tag">New Arrival &mdash; Consumer Electronics</span>
+<h3>Portable <span>Blending Cup</span><br>Pro Series</h3>
+<p class="feat-desc">The next generation of on-the-go nutrition. A high-performance portable blender built with BPA-free Tritan material, powered by a 360W pure copper motor at 22,000 RPM. IPX7 waterproof, 6000mAh rechargeable battery, and direct drinking design — engineered for athletes, travelers, and health-conscious consumers worldwide.</p>
+<div class="feat-highlights">
+<span class="feat-chip">360W Motor</span>
+<span class="feat-chip">22,000 RPM</span>
+<span class="feat-chip">6000mAh</span>
+<span class="feat-chip">IPX7 Waterproof</span>
+<span class="feat-chip">Tritan BPA-Free</span>
+<span class="feat-chip">USB-C Charging</span>
+</div>
+<a href="#contact" class="btn btn-primary">Request Quotation &rarr;</a>
+</div>
+</div>
+<div class="featured-gallery">
+<div class="featured-gallery-item" onclick="openLightbox(this)">
+<img src="products/blender-power.png" alt="360W High Power">
+<span class="gallery-label">360W Power</span>
+</div>
+<div class="featured-gallery-item" onclick="openLightbox(this)">
+<img src="products/blender-waterproof.png" alt="IPX7 Waterproof">
+<span class="gallery-label">IPX7 Waterproof</span>
+</div>
+<div class="featured-gallery-item" onclick="openLightbox(this)">
+<img src="products/blender-motor.jpg" alt="Pure Copper Motor">
+<span class="gallery-label">Copper Motor</span>
+</div>
+<div class="featured-video-slot" onclick="playVideo(event)">
+<video id="blenderVideo" src="products/blender-video.mp4" preload="metadata" playsinline loop style="width:100%;height:100%;object-fit:cover"></video>
+<div class="video-placeholder" id="videoSlot">
+<div class="play-icon">
+<svg viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19"/></svg>
+</div>
+<span>Play Video</span>
+</div>
+</div>
+<div class="featured-gallery-item" onclick="openLightbox(this)">
+<img src="products/blender-details.jpg" alt="Thoughtful Details">
+<span class="gallery-label">Smart Details</span>
+</div>
+<div class="featured-gallery-item" onclick="openLightbox(this)">
+<img src="products/blender-specs.png" alt="Specifications">
+<span class="gallery-label">Specifications</span>
+</div>
+<div class="featured-gallery-item" onclick="openLightbox(this)">
+<img src="products/blender-tritan.png" alt="Tritan Material">
+<span class="gallery-label">Tritan Material</span>
+</div>
+<div class="featured-gallery-item" onclick="openLightbox(this)">
+<img src="products/blender-sports.png" alt="Sports Lifestyle">
+<span class="gallery-label">Sports Lifestyle</span>
+</div>
+</div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+<button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+<img id="lightboxImg" src="" alt="Preview">
+</div>
+
+<div class="trend-grid">
+<!-- products -->
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Home Appliance</span>
+<img src="products/product-1.png" alt="Countertop Ice Maker" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Countertop Ice Maker</h3>
+<p>Compact stainless steel ice maker producing 26lbs/day with self-cleaning function. The #1 trending small appliance across global markets.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Home Decor</span>
+<img src="products/product-2.png" alt="Folding Paper Lantern Lamp" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Folding Paper Lantern Lamp</h3>
+<p>Rechargeable eco-friendly table lamp with collapsible paper shade and wooden accents. Customizable shell patterns — folds into multiple shapes for versatile decor.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Home Appliance</span>
+<img src="products/product-3.png" alt="Desktop Air Purifier" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Desktop HEPA Air Purifier</h3>
+<p>Portable air purifier with true HEPA filtration, LED air quality indicator, and whisper-quiet operation for home and office use.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Smart Home</span>
+<img src="products/product-4.png" alt="Smart Security Camera" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Wireless Security Camera</h3>
+<p>360-degree pan-tilt smart camera with night vision, two-way audio, and app control. Over 69% of households now own at least one smart home device.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Consumer Goods</span>
+<img src="products/product-5.png" alt="Insulated Tumbler" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Insulated Stainless Tumbler</h3>
+<p>40oz double-wall vacuum insulated tumbler with handle and straw. The hottest drinkware category dominating Amazon's best-seller charts.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Garment Care</span>
+<img src="products/product-6.png" alt="Handheld Garment Steamer" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Handheld Garment Steamer</h3>
+<p>Compact foldable steamer with stainless steel panel, 185mL water tank, and 1400W rapid heat-up. Portable design for travel and daily garment care.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Kitchen Appliance</span>
+<img src="products/product-7.png" alt="Capsule Coffee Machine" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Capsule Coffee Machine</h3>
+<p>Sleek single-serve pod coffee maker with 19-bar pressure extraction, compact design perfect for home and office. Quick brew in under 60 seconds.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Hair Styling</span>
+<img src="products/product-8.png" alt="Professional Hair Straightener" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Professional Hair Straightener</h3>
+<p>LCD digital display flat iron with ceramic floating plates, adjustable temperature 80-230°C, and PTC fast heating. Salon-quality styling at home.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Outdoor Gear</span>
+<img src="products/product-9.png" alt="Camping Cookware Set" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Camping Cookware Set</h3>
+<p>Lightweight aluminum cook set with pot, kettle, and frying pan. Compact nesting design with carry bag — essential gear for outdoor adventures.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Outdoor Gear</span>
+<img src="products/product-10.png" alt="Foldable Camping Chair" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Foldable Camping Chair</h3>
+<p>Premium lightweight aluminum frame chair with breathable fabric, armrests, and cup holder. Packs small, sits comfortably — ideal for camping and travel.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Hair Styling</span>
+<img src="products/product-11.png" alt="Hot Air Styling Brush" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Hot Air Styling Brush</h3>
+<p>All-in-one blow dry and volumizing brush with multiple heat settings. One-step styling for salon-quality blowouts at home.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Home Cleaning</span>
+<img src="products/product-12.png" alt="Electric Steam Mop" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Electric Steam Mop</h3>
+<p>Upright steam mop with swivel triangular head for deep floor cleaning. Chemical-free sanitization with continuous steam output.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Outdoor Gear</span>
+<img src="products/product-13.png" alt="Rechargeable Camping Lantern" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Rechargeable Camping Lantern</h3>
+<p>Vintage-style LED camping light with USB recharging, multiple brightness modes, and metal hook. Warm ambient glow for outdoor nights.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+<div class="trend-card reveal">
+<div class="trend-card-img" style="background:#fafafa">
+<span class="trend-tag">Kitchen Appliance</span>
+<img src="products/product-14.png" alt="Espresso Coffee Machine" style="width:100%;height:100%;object-fit:contain">
+</div>
+<div class="trend-card-body">
+<h3>Espresso Coffee Machine</h3>
+<p>Premium 15-bar pressure espresso maker with steam wand for milk frothing. Brushed stainless steel finish — barista-quality coffee at home.</p>
+<a href="#contact">Learn More &rarr;</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="stats">
+<div class="container stats-grid">
+<div class="stat-item"><span class="stat-num" data-target="15">0</span><span class="stat-plus">+</span><p>Years of Industry Experience</p></div>
+<div class="stat-item"><span class="stat-num" data-target="10000">0</span><span class="stat-plus">+</span><p>Successful Projects Delivered</p></div>
+<div class="stat-item"><span class="stat-num" data-target="30">0</span><span class="stat-plus">+</span><p>Countries Served</p></div>
+<div class="stat-item"><span class="stat-num" data-target="200">0</span><span class="stat-plus">+</span><p>Manufacturing Partners</p></div>
+</div>
+</section>
+
+<!-- WHY -->
+<section class="section why" id="why">
+<div class="container">
+<h2 class="section-label reveal"><span class="light">why&nbsp;&nbsp;</span><span class="bold">KnapS Group</span></h2>
+<div class="why-grid">
+<div class="why-card reveal">
+<div class="why-icon">
+<svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="56" height="56" rx="14" fill="#E7F1FE"/><path d="M20 28h16M28 20v16" stroke="#4F9EF6" stroke-width="2.5" stroke-linecap="round"/><circle cx="28" cy="28" r="12" stroke="#4F9EF6" stroke-width="2"/></svg>
+</div>
+<h3>Strategic Partner, Not a Middleman</h3>
+<p>We embed into your operations as an extension of your team, providing strategic oversight rather than transactional sourcing.</p>
+</div>
+<div class="why-card reveal">
+<div class="why-icon">
+<svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="56" height="56" rx="14" fill="#E7F1FE"/><circle cx="28" cy="28" r="12" stroke="#4F9EF6" stroke-width="2"/><circle cx="28" cy="28" r="6" stroke="#4F9EF6" stroke-width="1.5" stroke-dasharray="3 2"/><circle cx="28" cy="28" r="3" fill="#4F9EF6"/></svg>
+</div>
+<h3>Global Reach, Local Expertise</h3>
+<p>With deep roots across major manufacturing regions, we combine international perspective with on-the-ground knowledge.</p>
+</div>
+<div class="why-card reveal">
+<div class="why-icon">
+<svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="56" height="56" rx="14" fill="#E7F1FE"/><path d="M20 30l5 5 11-11" stroke="#4F9EF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="18" width="24" height="20" rx="3" stroke="#4F9EF6" stroke-width="2"/></svg>
+</div>
+<h3>Uncompromising Standards</h3>
+<p>From factory audits to final inspection, our quality management system ensures your brand reputation is always protected.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+<div class="container">
+<h2 class="section-label reveal"><span class="light">get in&nbsp;&nbsp;</span><span class="bold">Touch</span></h2>
+<div class="contact-grid">
+<div class="contact-info reveal">
+<div class="contact-row">
+<div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F9EF6" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg></div>
+<div><h4>Email</h4><a href="/cdn-cgi/l/email-protection#c7aea9a1a887aca9a6b7b4a0b5a8b2b7e9a4a8aa"><span class="__cf_email__" data-cfemail="d3babdb5bc93b8bdb2a3a0b4a1bca6a3fdb0bcbe">[email&#160;protected]</span></a></div>
+</div>
+<div class="contact-row">
+<div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F9EF6" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+<div><h4>WhatsApp &amp; Phone</h4><a href="tel:+8613421369287">+86 134 2136 9287</a></div>
+</div>
+<div class="contact-row">
+<div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F9EF6" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+<div><h4>Address</h4><p>Unit 7025, Block B, Electronic Science &amp; Tech Building, Futian District, Shenzhen 518028 China</p></div>
+</div>
+</div>
+<form class="contact-form reveal" onsubmit="event.preventDefault();this.querySelector('.form-success').style.display='flex';this.querySelector('button').style.display='none'">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="text" placeholder="Company Name">
+<textarea rows="5" placeholder="Your Message" required></textarea>
+<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message <span class="arrow">&rarr;</span></button>
+<div class="form-success" style="display:none;align-items:center;gap:8px;color:var(--blue);font-weight:600;justify-content:center;padding:16px 0">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F9EF6" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+Message sent! We'll be in touch.
+</div>
+</form>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container footer-inner">
+<div class="footer-brand">
+<svg viewBox="0 0 180 40" height="32" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="20" r="5" fill="#4F9EF6"/><circle cx="28" cy="20" r="7.5" fill="#4F9EF6"/><circle cx="50" cy="20" r="11" fill="#4F9EF6"/>
+<text x="68" y="27" font-family="Montserrat,sans-serif" font-weight="800" font-size="22" fill="#ffffff">Knap<tspan fill="#4F9EF6">S</tspan></text>
+</svg>
+<p class="footer-tagline">KnapS the World, Spark Joy</p>
+</div>
+<nav class="footer-links">
+<a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#trend">KnapS Trend</a><a href="#contact">Contact</a>
+</nav>
+<div class="footer-social">
+<a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+<a href="/cdn-cgi/l/email-protection#254c4b434a654e4b44555642574a50550b464a48" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg></a>
+</div>
+<p class="footer-copy">&copy; 2025 KnapS Group. All Rights Reserved.</p>
+</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* === NAV scroll & toggle === */
+const nav=document.getElementById('nav'),toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>10)});
+toggle.addEventListener('click',()=>{links.classList.toggle('open');toggle.classList.toggle('active')});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');toggle.classList.remove('active')}));
+
+/* === Reveal on scroll === */
+const reveals=document.querySelectorAll('.reveal');
+const revealObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>revealObs.observe(el));
+
+/* === Counter animation === */
+let counted=false;
+const statSection=document.getElementById('stats');
+const counterObs=new IntersectionObserver((entries)=>{
+if(entries[0].isIntersecting&&!counted){
+counted=true;
+document.querySelectorAll('.stat-num').forEach(num=>{
+const target=+num.dataset.target;
+const duration=1800;
+const step=Math.ceil(target/60);
+let current=0;
+const timer=setInterval(()=>{
+current+=step;
+if(current>=target){current=target;clearInterval(timer)}
+num.textContent=current;
+},duration/60);
+});
+}
+},{threshold:.4});
+counterObs.observe(statSection);
+
+/* === Active nav link highlight === */
+const sections=document.querySelectorAll('section[id]');
+const navAnchors=document.querySelectorAll('.nav-links a[href^="#"]');
+const highlightNav=()=>{
+let scrollY=window.scrollY+100;
+sections.forEach(sec=>{
+const top=sec.offsetTop-100,h=sec.offsetHeight,id=sec.getAttribute('id');
+if(scrollY>=top&&scrollY<top+h){
+navAnchors.forEach(a=>{a.style.color='';if(a.getAttribute('href')==='#'+id)a.style.color='var(--blue)'});
+}
+});
+};
+window.addEventListener('scroll',highlightNav);
+highlightNav();
+
+/* === Lightbox === */
+function openLightbox(el){
+const img=el.querySelector('img');
+if(!img)return;
+const lb=document.getElementById('lightbox');
+document.getElementById('lightboxImg').src=img.src;
+lb.classList.add('active');
+document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+document.getElementById('lightbox').classList.remove('active');
+document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+/* === Video Player === */
+function playVideo(e){
+e.stopPropagation();
+const video=document.getElementById('blenderVideo');
+const overlay=document.getElementById('videoSlot');
+if(video.paused){
+video.play();
+overlay.classList.add('hidden');
+}else{
+video.pause();
+overlay.classList.remove('hidden');
+}
+}
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"75124c326cb447fe934cde04713ae013","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
